@@ -27,7 +27,7 @@ Produto *criaNo(int id){
 }
 
 Produto *insereNo(Produto *no, int id){
-    if(no == NULL){
+    if(!no){
         no = criaNo(id);
     }else{
         if(id < no->id){

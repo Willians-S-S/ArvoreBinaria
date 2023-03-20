@@ -17,6 +17,7 @@ Arvore *inserirArvore(Arvore *a){
     scanf("%d", &id);
     if(a == NULL){
         a = (Arvore*)malloc(sizeof(Arvore));
+        a->raiz = NULL;
     }
     a->raiz = insereNo(a->raiz, id);
     return a;
