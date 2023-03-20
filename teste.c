@@ -15,92 +15,89 @@ typedef struct arvore{
     Produto *raiz;
 }Arvore;
 
-typedef struct arvore{
-    int info;
-    struct arvore *esq;
-    struct arvore *dir;
-}Arvore;
+// typedef struct arvore{
+//     int id;
+//     struct arvore *esquerda;
+//     struct arvore *direita }Arvore;
 
-Arvore *criaArvore(int info){
-    Arvore *a = (Arvore*)malloc(sizeof(Arvore));
-    a->info = info;
-    a->esq = NULL;
-    a->dir = NULL;
-    return a;
+Produto *criaArvore(int id){
+    Produto *a = (Produto*)malloc(sizeof(Produto));
+    a->id = id;
+    a->esquerda = NULL;
+    a->direita = NULL;
+    return a; 
 }
 
-Arvore *insereArvore(Arvore *a, int info){
-    if(a == NULL){
-        a = criaArvore(info);
+Produto *insereArvore(Produto *no, int id){
+    if(no == NULL){
+        no = criaArvore(id);
     }else{
-        if(info < a->info){
-            a->esq = insereArvore(a->esq, info);
+        if(id < no->id){
+            no->esquerda = insereArvore(no->esquerda, id);
         }else{
-            a->dir = insereArvore(a->dir, info);
+            no->direita = insereArvore(no->direita, id);
         }
     }
-    return a;
+    return no;
 }
 
 //remover no da arvore
 
-Arvore *removeArvore(Arvore *a, int info){
-    if(a == NULL){
-        return NULL;
-    }else{
-        if(info < a->info){
-            a->esq = removeArvore(a->esq, info);
-        }else{
-            if(info > a->info){
-                a->dir = removeArvore(a->dir, info);
-            }else{
-                if(a->esq == NULL && a->dir == NULL){
-                    free(a);
-                    a = NULL;
-                }else{
-                    if(a->esq == NULL){
-                        Arvore *aux = a;
-                        a = a->dir;
-                        free(aux);
-                    }else{
-                        if(a->dir == NULL){
-                            Arvore *aux = a;
-                            a = a->esq;
-                            free(aux);
-                        }else{
-                            Arvore *aux = a->dir;
-                            while(aux->esq != NULL){
-                                aux = aux->esq;
-                            }
-                            a->info = aux->info;
-                            aux->info = info;
-                            a->dir = removeArvore(a->dir, info);
-                        }
-                    }
-                }
-            }
-        }
-    }
-    return a;
-}
+// Arvore *removeArvore(Arvore *a, int id){
+//     if(a == NULL){
+//         return NULL;
+//     }else{
+//         if(id < a->id){
+//             a->esquerda = removeArvore(a->esquerda, id);
+//         }else{
+//             if(id > a->id){
+//                 a->direitaemoveArvore(a->direita);
+//             }else{
+//                 if(a->esquerda == NULL && a->direitaNULL){
+//                     free(a);
+//                     a = NULL;
+//                 }else{
+//                     if(a->esquerda == NULL){
+//                         Arvore *aux = a;
+//                         a = a->direita                      free(aux);
+//                     }else{
+//                         if(a->direitaNULL){
+//                             Arvore *aux = a;
+//                             a = a->esquerda;
+//                             free(aux);
+//                         }else{
+//                             Arvore *aux = a->direita                          while(aux->esquerda != NULL){
+//                                 aux = aux->esquerda;
+//                             }
+//                             a->id = aux->id;
+//                             aux->id = id;
+//                             a->direitaemoveArvore(a->direita);
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     return a;
+// }
 
-void imprimeArvore(Arvore *a){
-    if(a != NULL){
-        imprimeArvore(a->esq);
-        printf("%d ", a->info);
-        imprimeArvore(a->dir);
+void imprimeArvore(Arvore *no){
+    if(no->raiz != NULL){
+        imprimeArvore(no->raiz->esquerda);
+        printf("%d ", no->raiz->id);
+        imprimeArvore(no->raiz->direita);
     }
 }
 
 int main(){
     Arvore *a = NULL;
-    a = insereArvore(a, 10);
-    a = insereArvore(a, 5);
-    a = insereArvore(a, 15);
-    a = insereArvore(a, 3);
-    a = insereArvore(a, 7);
-    a = insereArvore(a, 12);
-    a = insereArvore(a, 18);
+     insereArvore(a->raiz, 10);
+     insereArvore(a->raiz, 5);
+     insereArvore(a->raiz, 15);
+     insereArvore(a->raiz, 3);
+     insereArvore(a->raiz, 7);
+     insereArvore(a->raiz, 12);
+     insereArvore(a->raiz, 18);
     imprimeArvore(a);
     return 0;
 }
